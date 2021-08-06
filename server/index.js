@@ -1,7 +1,9 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import { connect } from './db.js'
 
 dotenv.config()
+connect()
 
 const app = express()
 const port = process.env.TODO_API_PORT
