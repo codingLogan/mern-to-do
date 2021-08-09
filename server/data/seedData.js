@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs'
 import { connect } from '../db.js'
 import User from '../models/userModel.js'
 import ToDo from '../models/toDoModel.js'
+import { getHashedPassword } from '../auth/auth.js'
 
 dotenv.config()
 connect()
@@ -25,8 +26,7 @@ function clearData() {
 }
 
 function createDefaultUsers() {
-  const salt = bcrypt.genSaltSync(10)
-  const password = bcrypt.hashSync('asdf', salt)
+  const password = getHashedPassword('asdf')
   const testNames = ['John', 'Jane', 'Admin', 'Dev']
 
   const users = testNames.map((name) => ({
